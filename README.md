@@ -1,3 +1,10 @@
+<p align="center" style="text-align: center;">
+    <a href="https://github.com/noah-blockchain/explorer-genesis-uploader/blob/master/LICENSE">
+        <img src="https://img.shields.io/packagist/l/doctrine/orm.svg" alt="License">
+    </a>
+    <img alt="undefined" src="https://img.shields.io/github/last-commit/noah-blockchain/explorer-genesis-uploader.svg">
+</p>
+
 # NOAH Explorer Genesis Uploader
 
 The official repository of Noah Explorer Genesis Uploader service.
