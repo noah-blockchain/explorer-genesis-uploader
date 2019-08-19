@@ -3,7 +3,6 @@ module github.com/noah-blockchain/explorer-genesis-uploader
 go 1.12
 
 require (
-	github.com/PillarDevelopment/GO_CHAIN v0.0.0-20190723162504-6a6b7aa34fdc // indirect
 	github.com/centrifugal/gocent v2.0.2+incompatible // indirect
 	github.com/go-pg/pg v8.0.5+incompatible
 	github.com/jinzhu/inflection v1.0.0 // indirect
