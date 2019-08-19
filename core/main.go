@@ -3,6 +3,13 @@ package core
 import (
 	"encoding/json"
 	"fmt"
+	"math"
+	"os"
+	"strconv"
+	"sync"
+	"time"
+
+	"github.com/go-pg/pg"
 	"github.com/noah-blockchain/noah-explorer-extender/address"
 	"github.com/noah-blockchain/noah-explorer-extender/balance"
 	"github.com/noah-blockchain/noah-explorer-extender/block"
@@ -10,14 +17,8 @@ import (
 	"github.com/noah-blockchain/noah-explorer-extender/validator"
 	"github.com/noah-blockchain/noah-explorer-tools/helpers"
 	"github.com/noah-blockchain/noah-explorer-tools/models"
-	"github.com/go-pg/pg"
 	"github.com/sirupsen/logrus"
 	"github.com/valyala/fasthttp"
-	"math"
-	"os"
-	"strconv"
-	"sync"
-	"time"
 )
 
 type ExplorerGenesisUploader struct {
@@ -202,7 +203,7 @@ func (egu *ExplorerGenesisUploader) extractStakes(genesis *Genesis) ([]*models.S
 				OwnerAddressID: ownerId,
 				ValidatorID:    validatorId,
 				Value:          stake.Value,
-				NoahValue:       stake.NoahValue,
+				NoahValue:      stake.NoahValue, // todo
 			})
 		}
 	}

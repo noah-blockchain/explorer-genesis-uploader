@@ -42,18 +42,18 @@ type AppState struct {
 }
 
 type Validator struct {
-	RewardAddress string `json:"reward_address"`
+	RewardAddress  string `json:"reward_address"`
 	TotalNoahStake string `json:"total_noah_stake"`
-	PubKey        string `json:"pub_key"`
-	Commission    string `json:"commission"`
-	AccumReward   string `json:"accum_reward"`
-	AbsentTimes   string `json:"absent_times"`
+	PubKey         string `json:"pub_key"`
+	Commission     string `json:"commission"`
+	AccumReward    string `json:"accum_reward"`
+	AbsentTimes    string `json:"absent_times"`
 }
 
 type Candidate struct {
 	RewardAddress  string  `json:"reward_address"`
 	OwnerAddress   string  `json:"owner_address"`
-	TotalNoahStake  string  `json:"total_noah_stake"`
+	TotalNoahStake string  `json:"total_noah_stake"`
 	PubKey         string  `json:"pub_key"`
 	Commission     string  `json:"commission"`
 	Stakes         []Stake `json:"stakes"`
@@ -62,9 +62,9 @@ type Candidate struct {
 }
 
 type Stake struct {
-	Owner    string `json:"owner"`
-	Coin     string `json:"coin"`
-	Value    string `json:"value"`
+	Owner     string `json:"owner"`
+	Coin      string `json:"coin"`
+	Value     string `json:"value"`
 	NoahValue string `json:"noah_value"`
 }
 
