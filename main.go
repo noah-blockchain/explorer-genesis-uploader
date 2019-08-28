@@ -1,9 +1,10 @@
-package explorer_genesis_uploader
+package main
 
 import (
+	"os"
+
 	"github.com/noah-blockchain/explorer-genesis-uploader/core"
 	"github.com/noah-blockchain/noah-explorer-extender/env"
-	"os"
 )
 
 func main() {
