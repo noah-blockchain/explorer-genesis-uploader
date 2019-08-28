@@ -203,7 +203,7 @@ func (egu *ExplorerGenesisUploader) extractStakes(genesis *Genesis) ([]*models.S
 				OwnerAddressID: ownerId,
 				ValidatorID:    validatorId,
 				Value:          stake.Value,
-				NoahValue:      stake.NoahValue, // todo
+				NoahValue:      stake.NoahValue,
 			})
 		}
 	}
