@@ -76,7 +76,6 @@ func New(env *models.ExtenderEnvironment) *ExplorerGenesisUploader {
 }
 
 func (egu *ExplorerGenesisUploader) Do() error {
-
 	egu.logger.Info("Getting genesis data...")
 	url := egu.env.NodeApi + "/genesis"
 	_, data, err := fasthttp.Get(nil, url)

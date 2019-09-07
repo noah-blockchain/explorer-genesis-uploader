@@ -1,8 +1,8 @@
 {
   "name": "Noah Extender",
   "app":{
-    "debug": ME_DEBUG,
-    "baseCoin": "ME_BASE_COIN",
+    "debug": true,
+    "baseCoin": "NOAH",
     "coinsUpdateTimeMinutes" : ME_COINS_UPDATE_TIME,
     "txChunkSize": ME_TX_CHUNK_SIZE,
     "addrChunkSize": ME_ADDR_CHUNK_SIZE,
@@ -36,10 +36,10 @@
     "host": "ME_API_HOST",
     "port": "ME_API_PORT"
   },
- "wsServer":{
-   "isSecure" : false,
-   "link" : "ME_WS_LINK",
-   "port" : "ME_WS_PORT",
-   "key"  : "ME_WS_KEY"
- }
+  "wsServer":{
+    "isSecure" : false,
+    "link" : "ME_WS_LINK",
+    "port" : "ME_WS_PORT",
+    "key"  : "ME_WS_KEY"
+  }
 }
