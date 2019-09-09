@@ -35,6 +35,7 @@ type ExplorerGenesisUploader struct {
 func New(env *models.ExtenderEnvironment) *ExplorerGenesisUploader {
 	//Init DB
 	db := pg.Connect(&pg.Options{
+		Addr:            fmt.Sprintf("%s:%d", env.DbHost, env.DbPort),
 		User:            env.DbUser,
 		Password:        env.DbPassword,
 		Database:        env.DbName,
