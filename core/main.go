@@ -39,9 +39,10 @@ func New(env *models.ExtenderEnvironment) *ExplorerGenesisUploader {
 		User:            env.DbUser,
 		Password:        env.DbPassword,
 		Database:        env.DbName,
-		PoolSize:        20,
-		MinIdleConns:    10,
+		PoolSize:        env.DbPoolSize,
+		MinIdleConns:    env.DbMinIdleConns,
 		ApplicationName: env.AppName,
+		MaxRetries:      10,
 	})
 
 	//Init Logger
