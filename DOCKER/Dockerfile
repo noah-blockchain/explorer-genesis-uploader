@@ -1,3 +1,4 @@
+# docker build --no-cache -t node:latest -f DOCKER/Dockerfile .
 # docker build -t noah-uploader -f DOCKER/Dockerfile .
 # docker run -d -p
 FROM golang:1.12-buster as builder
