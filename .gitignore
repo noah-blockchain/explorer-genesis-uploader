@@ -84,4 +84,6 @@ config.json
 vendor
 .DS_Store
 
+build
 go.sum
+.idea
