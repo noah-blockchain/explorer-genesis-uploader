@@ -11,40 +11,20 @@ The official repository of Noah Explorer Genesis Uploader service.
 
 Noah Explorer Genesis Uploader is a service which provides to upload primary network state data to Noah Explorer database after network reset or first start.
 
-## RUN
+## BUILD
 
+- make create_vendor
 - make build
 
-- ./builds/explorer-genesis-uploader -config=/etc/noah/config.json 
+## Configure Extender Service from Environment (example in .env.example)
+1) Set up connect to PostgresSQL Databases.
+2) Set up connect to Node which working in non-validator mode. 
+3) Set up connect to Extender service. 
 
-### Config file
+## RUN
+./uploader
 
-Support JSON and YAML formats 
-
-Example:
-
-```
-{
-  "name": "Noah Explorer Genesis Uploader",
-  "app": {
-    "debug": true,
-    "baseCoin": "MNT",
-    "txChunkSize": 200,
-    "addrChunkSize": 30,
-    "eventsChunkSize": 200
-  },
-  "database": {
-    "host": "localhost",
-    "name": "explorer",
-    "user": "noah",
-    "password": "password",
-    "minIdleConns": 10,
-    "poolSize": 20
-  },
-  "noahApi": {
-    "isSecure": false,
-    "link": "localhost",
-    "port": 8841
-  }
-}
-```
+_We recommend use our official docker image._
+### Important Environments
+Example for all important environments you can see in file .env.example.
+Its config for connect to PostgresSQL, Node API URL, Extender URL and service mode (debug, prod).

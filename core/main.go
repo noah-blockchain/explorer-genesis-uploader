@@ -35,12 +35,14 @@ type ExplorerGenesisUploader struct {
 func New(env *models.ExtenderEnvironment) *ExplorerGenesisUploader {
 	//Init DB
 	db := pg.Connect(&pg.Options{
+		Addr:            fmt.Sprintf("%s:%d", env.DbHost, env.DbPort),
 		User:            env.DbUser,
 		Password:        env.DbPassword,
 		Database:        env.DbName,
-		PoolSize:        20,
-		MinIdleConns:    10,
+		PoolSize:        env.DbPoolSize,
+		MinIdleConns:    env.DbMinIdleConns,
 		ApplicationName: env.AppName,
+		MaxRetries:      10,
 	})
 
 	//Init Logger
@@ -76,7 +78,6 @@ func New(env *models.ExtenderEnvironment) *ExplorerGenesisUploader {
 }
 
 func (egu *ExplorerGenesisUploader) Do() error {
-
 	egu.logger.Info("Getting genesis data...")
 	url := egu.env.NodeApi + "/genesis"
 	_, data, err := fasthttp.Get(nil, url)
@@ -140,17 +141,17 @@ func (egu *ExplorerGenesisUploader) Do() error {
 func (egu *ExplorerGenesisUploader) extractAddresses(genesis *Genesis) ([]string, error) {
 	addressesMap := make(map[string]struct{})
 	for _, val := range genesis.AppState.Validators {
-		addressesMap[helpers.RemovePrefix(val.RewardAddress)] = struct{}{}
+		addressesMap[helpers.RemovePrefixFromAddress(val.RewardAddress)] = struct{}{}
 	}
 	for _, candidate := range genesis.AppState.Candidates {
-		addressesMap[helpers.RemovePrefix(candidate.RewardAddress)] = struct{}{}
-		addressesMap[helpers.RemovePrefix(candidate.OwnerAddress)] = struct{}{}
+		addressesMap[helpers.RemovePrefixFromAddress(candidate.RewardAddress)] = struct{}{}
+		addressesMap[helpers.RemovePrefixFromAddress(candidate.OwnerAddress)] = struct{}{}
 		for _, stake := range candidate.Stakes {
-			addressesMap[helpers.RemovePrefix(stake.Owner)] = struct{}{}
+			addressesMap[helpers.RemovePrefixFromAddress(stake.Owner)] = struct{}{}
 		}
 	}
 	for _, account := range genesis.AppState.Accounts {
-		addressesMap[helpers.RemovePrefix(account.Address)] = struct{}{}
+		addressesMap[helpers.RemovePrefixFromAddress(account.Address)] = struct{}{}
 	}
 	var addresses = make([]string, len(addressesMap))
 	i := 0
@@ -190,7 +191,7 @@ func (egu *ExplorerGenesisUploader) extractStakes(genesis *Genesis) ([]*models.S
 			if err != nil {
 				egu.logger.Error(err)
 			}
-			ownerId, err := egu.addressRepository.FindId(helpers.RemovePrefix(stake.Owner))
+			ownerId, err := egu.addressRepository.FindId(helpers.RemovePrefixFromAddress(stake.Owner))
 			if err != nil {
 				egu.logger.Error(err)
 			}
@@ -203,7 +204,7 @@ func (egu *ExplorerGenesisUploader) extractStakes(genesis *Genesis) ([]*models.S
 				OwnerAddressID: ownerId,
 				ValidatorID:    validatorId,
 				Value:          stake.Value,
-				NoahValue:      stake.NoahValue, // todo
+				NoahValue:      stake.NoahValue,
 			})
 		}
 	}
@@ -213,7 +214,7 @@ func (egu *ExplorerGenesisUploader) extractStakes(genesis *Genesis) ([]*models.S
 func (egu *ExplorerGenesisUploader) extractBalances(genesis *Genesis) ([]*models.Balance, error) {
 	var balances []*models.Balance
 	for _, account := range genesis.AppState.Accounts {
-		addressId, err := egu.addressRepository.FindId(helpers.RemovePrefix(account.Address))
+		addressId, err := egu.addressRepository.FindId(helpers.RemovePrefixFromAddress(account.Address))
 		if err != nil {
 			egu.logger.Error(err)
 		}
@@ -235,11 +236,11 @@ func (egu *ExplorerGenesisUploader) extractBalances(genesis *Genesis) ([]*models
 func (egu ExplorerGenesisUploader) extractCandidates(genesis *Genesis) ([]*models.Validator, error) {
 	var validators []*models.Validator
 	for _, candidate := range genesis.AppState.Candidates {
-		ownerAddress, err := egu.addressRepository.FindId(helpers.RemovePrefix(candidate.OwnerAddress))
+		ownerAddress, err := egu.addressRepository.FindId(helpers.RemovePrefixFromAddress(candidate.OwnerAddress))
 		if err != nil {
 			egu.logger.Error(err)
 		}
-		rewardAddress, err := egu.addressRepository.FindId(helpers.RemovePrefix(candidate.RewardAddress))
+		rewardAddress, err := egu.addressRepository.FindId(helpers.RemovePrefixFromAddress(candidate.RewardAddress))
 		if err != nil {
 			egu.logger.Error(err)
 		}
