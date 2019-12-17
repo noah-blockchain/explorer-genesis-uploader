@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/noah-blockchain/explorer-genesis-uploader/core"
-	"github.com/noah-blockchain/noah-explorer-extender/env"
+	"github.com/noah-blockchain/explorer-genesis-uploader/internal/core"
+	"github.com/noah-blockchain/explorer-genesis-uploader/internal/env"
 )
 
 func main() {

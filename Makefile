@@ -1,17 +1,6 @@
-APP ?= explorer-genesis-uploader
-VERSION ?= $(strip $(shell cat VERSION))
+APP ?= explorer-uploader
 GOOS ?= linux
 SRC = ./
-
-COMMIT = $(shell git rev-parse --short HEAD)
-BRANCH = $(strip $(shell git rev-parse --abbrev-ref HEAD))
-CHANGES = $(shell git rev-list --count ${COMMIT})
-BUILDED ?= $(shell date -u '+%Y-%m-%dT%H:%M:%S')
-BUILD_FLAGS = "-X main.Version=$(VERSION) -X main.GitCommit=$(COMMIT) -X main.BuildedDate=$(BUILDED)"
-BUILD_TAGS?=explorer-genesis-uploader
-DOCKER_TAG = latest
-SERVER ?= explorer-genesis-uploader.noah.network
-PACKAGES=$(shell go list ./... | grep -v '/vendor/')
 
 all: test build
 
@@ -23,10 +12,10 @@ create_vendor:
 
 ### Build ###################
 build: clean
-	GOOS=${GOOS} go build -ldflags $(BUILD_FLAGS) -o ./builds/$(APP)
+	GOOS=${GOOS} go build -o ./build/$(APP) -i ./cmd/explorer-uploader
 
 install:
-	GOOS=${GOOS} go install -ldflags $(BUILD_FLAGS)
+	GOOS=${GOOS} go install -i ./cmd/explorer-uploader
 
 clean:
 	@rm -f $(BINARY)
