@@ -6,8 +6,11 @@ replace mellium.im/sasl v0.2.1 => github.com/mellium/sasl v0.2.1
 
 require (
 	github.com/go-pg/pg v8.0.5+incompatible
-	github.com/noah-blockchain/noah-explorer-extender v0.1.2
-	github.com/noah-blockchain/noah-explorer-tools v0.1.1
+	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/noah-blockchain/coinExplorer-tools v0.1.7
+	github.com/onsi/ginkgo v1.10.3 // indirect
+	github.com/onsi/gomega v1.7.1 // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/valyala/fasthttp v1.4.0
+	mellium.im/sasl v0.2.1 // indirect
 )

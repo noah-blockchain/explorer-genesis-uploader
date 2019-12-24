@@ -3,10 +3,9 @@ version: "3.6"
 volumes:
   app-db-data:
 
-
 services:
   db:
-    image: postgres:11.2
+    image: postgres:11.6
     restart: always
     ports:
       - 5432:5432
