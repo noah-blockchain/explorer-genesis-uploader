@@ -18,12 +18,13 @@ func New() *models.ExtenderEnvironment {
 	envData.DbHost = os.Getenv("DB_HOST")
 	envData.DbPort = getEnvAsInt("DB_PORT", 5432)
 	envData.NodeApi = os.Getenv("NOAH_API_NODE")
-	envData.ApiHost = os.Getenv("COIN_EXTENDER_API_HOST")
-	envData.ApiPort = getEnvAsInt("COIN_EXTENDER_API_PORT", 10000)
 	envData.Debug = getEnvAsBool("DEBUG", true)
 
 	envData.AppName = *appName
 	envData.DbMinIdleConns = 10
 	envData.DbPoolSize = 20
+	envData.TxChunkSize = 100
+	envData.AddrChunkSize = 10
+
 	return envData
 }
