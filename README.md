@@ -1,9 +1,8 @@
-<p align="center" style="text-align: center;">
-    <a href="https://github.com/noah-blockchain/explorer-genesis-uploader/blob/master/LICENSE">
-        <img src="https://img.shields.io/packagist/l/doctrine/orm.svg" alt="License">
-    </a>
-    <img alt="undefined" src="https://img.shields.io/github/last-commit/noah-blockchain/explorer-genesis-uploader.svg">
-</p>
+
+[![last commit](https://img.shields.io/github/last-commit/noah-blockchain/explorer-genesis-uploader.svg)]()
+[![license](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/noah-blockchain/explorer-genesis-uploader/blob/master/LICENSE)
+[![version](https://img.shields.io/github/tag/noah-blockchain/explorer-genesis-uploader.svg)](https://github.com/noah-blockchain/explorer-genesis-uploader/releases/latest)
+[![](https://tokei.rs/b1/github/noah-blockchain/explorer-genesis-uploader?category=lines)](https://github.com/noah-blockchai/explorer-genesis-uploader)
 
 # NOAH Explorer Genesis Uploader
 
